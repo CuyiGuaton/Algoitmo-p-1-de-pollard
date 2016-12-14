@@ -13,45 +13,44 @@ int main(int argc, char const *argv[]) {
   gmp_randstate_t state; // semilla random
 
   //se le asigna valor e inicia varaibles
-  mpz_init_set_str (n, argv[1], 10);
-  mpz_init_set_ui(a, rand()%100);
+  mpz_init_set_str(n, argv[1], 10);
   mpz_init(a);
   mpz_init(B);
   mpz_init(np1);
   mpz_init(np2);
-  mpz_init_set_ui(aux,0);
+  mpz_init(aux);
   gmp_randinit_default(state); //inicializa algoritmo random
   gmp_randseed_ui(state, 100); //semilla de random
 
   //falta verificar que n es no primo
 
-LOOP:do{
-    mpz_urandomm(a,state, n);
-    mpz_gcd(aux, n, a); //el gcd(n,a) se guarda en aux y luego se comprara
-  }while(mpz_cmp_ui(aux,1) != 0 ); // hace a siempre sea menor que n-1 y que gcd(a,n) =1
+// Se elige un a al azar 1 < a < n-1, gcd(a,n)=1
+do{
+  do{
+      mpz_urandomm(a,state, n);
+      if(mpz_cmp_ui(a,1) != 0)
+        mpz_urandomm(a,state, n);
+      mpz_gcd(aux, n, a); //el gcd(n,a) se guarda en aux y luego se comprara
+    }while(mpz_cmp_ui(aux,1) != 0); // obliga que a cumpla gcd(a,n) =1 y a!= 1
 
-  mpz_set_ui(B,2); // B = 2
-  mpz_powm(a, a, B, n); // a = a^B mod n
-  mpz_sub_ui(aux, a , 1); // aux = a-1
-  mpz_gcd(np1, aux, n); // np1 = gcd(a -1,n)
-
-  while (mpz_cmp_ui(np1,1) == 0) { //mientras que np1 = 1
-    mpz_add_ui(B,B,1); // B= B+1
+    mpz_set_ui(B,1); // B = 2
     mpz_powm(a, a, B, n); // a = a^B mod n
     mpz_sub_ui(aux, a , 1); // aux = a-1
-    mpz_gcd(np1, aux, n); // np1 = gcd(a -1,n)
-  }
+    mpz_gcd(np1, aux, n); // np1 = gcd(a-1,n)
 
-  if(mpz_cmp(np1,n)==0 )
-    goto LOOP; // regresa a LOOP ya que el resultado es el número ingresado
-  else{
-    mpz_tdiv_q(np2,n,np1);
+    while (mpz_cmp_ui(np1,1) == 0) { //mientras que np1 = 1
+      mpz_add_ui(B,B,1); // B= B+1
+      mpz_powm(a, a, B, n); // a = a^B mod n
+      mpz_sub_ui(aux, a , 1); // aux = a-1
+      mpz_gcd(np1, aux, n); // np1 = gcd(a -1,n)
+    }
+
+  }while(mpz_cmp(np1,n)==0 );
     mpz_out_str(stdout, 10, np1);
     printf(" ");
+    mpz_tdiv_q(np2,n,np1); // np2 = n/np1ssssss
     mpz_out_str(stdout, 10, np2);
     printf("\n");
-  }
-
   gmp_randclear(state);
   mpz_clear(a);
   return 0;
