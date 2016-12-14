@@ -25,20 +25,32 @@ int main(int argc, char const *argv[]) {
 
   //falta verificar que n es no primo
 
-
-  do{
+LOOP:do{
     mpz_urandomm(a,state, n);
-    mpz_out_str(stdout, 10, a);
-    printf("\n");
     mpz_gcd(aux, n, a); //el gcd(n,a) se guarda en aux y luego se comprara
   }while(mpz_cmp_ui(aux,1) != 0 ); // hace a siempre sea menor que n-1 y que gcd(a,n) =1
 
   mpz_set_ui(B,2); // B = 2
   mpz_powm(a, a, B, n); // a = a^B mod n
-  mpz_sub_ui(aux, a , 1); // aux = a1
+  mpz_sub_ui(aux, a , 1); // aux = a-1
   mpz_gcd(np1, aux, n); // np1 = gcd(a -1,n)
 
+  while (mpz_cmp_ui(np1,1) == 0) { //mientras que np1 = 1
+    mpz_add_ui(B,B,1); // B= B+1
+    mpz_powm(a, a, B, n); // a = a^B mod n
+    mpz_sub_ui(aux, a , 1); // aux = a-1
+    mpz_gcd(np1, aux, n); // np1 = gcd(a -1,n)
+  }
 
+  if(mpz_cmp(np1,n)==0 )
+    goto LOOP; // regresa a LOOP ya que el resultado es el número ingresado
+  else{
+    mpz_tdiv_q(np2,n,np1);
+    mpz_out_str(stdout, 10, np1);
+    printf(" ");
+    mpz_out_str(stdout, 10, np2);
+    printf("\n");
+  }
 
   gmp_randclear(state);
   mpz_clear(a);
