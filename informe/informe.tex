@@ -1,0 +1,164 @@
+\documentclass[12pt,letterpaper]{scrartcl}
+\usepackage{lipsum}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[]{algorithm2e}
+\author{Don cuyi}
+
+%Color
+\usepackage{color}
+\definecolor{nred}{RGB}{174,49,54}
+\definecolor{nblue}{RGB}{86,99,146}
+\definecolor{nalgo}{RGB}{188,139,76}
+\usepackage{sectsty}
+\sectionfont{\color{nred}}
+\subsectionfont{\color{nblue}}
+\subsubsectionfont{\color{nalgo}}
+
+%Hipervinculos
+\usepackage{hyperref}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Algo. p-1 de Pollard}
+\fancyhead[C]{Lic. en ciencia de la computación}
+\fancyhead[R]{USACH}
+
+%interlineado
+\renewcommand{\baselinestretch}{1.2}
+
+%\bibitem{Yahoo} \textsc{Andres G} (2009),
+%\textbf{¿Generar números aleatorios negativos en Lenguaje C?} En \textsc{Yahoo! respuestas}
+%Recuperado el el 23 del julio del 2014
+%\url{https://es.answers.yahoo.com/question/index?qid=20091121055249AAUQH3N}
+
+\newcommand{\biblio}[7]{
+\bibitem{#1} \textsc{#2} (#3),
+\textbf{#4} En \textsc{#5}
+Recuperado el #6
+\url{#7}
+}
+
+% Last, F. M. (Year Published) Book. City, State: Publisher.
+\newcommand{\book}[5]{
+\bibitem{#1} \textsc{#2} (#3),
+\textbf{#4}  \textsc{#5} Estado: Publicado
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+
+{\Large { Licenciatura en ciencia de la computación} }
+
+\includegraphics[scale=1]{UDSCNRJ}
+\\[1cm]
+
+{\Huge \textsc{Algoritmo p-1 de Pollard}}\\[0.7cm]
+
+{\huge  Matemática Computacional}\\[2cm]
+
+
+\begin{minipage}[l]{0.4\textwidth}
+	\begin{flushleft}
+	\linespread{1}
+		\textbf{\textsf{Profesor:}}\\
+		\large Nicolas Thériault
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}[l]{0.4\textwidth}
+
+	\begin{flushright}
+
+		\textbf{\textsf{Autor:}}\\
+		\linespread{1}
+		\large Sergio Salinas\\
+		\large Danilo Abellá\\
+
+	\end{flushright}
+\end{minipage}
+
+\end{center}
+
+\end{titlepage}
+
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Introducción}
+
+\newpage
+\section{Formulación experimentos}
+
+Se probo el resultado con los tres números pedidos, pero para que el tiempo sea más exacto se ejecuto el algoritmo por durante un minuto y se calculo el primedio, los resultados son los siguientes.\\
+	
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+n & B & Tiempo \\ 
+\hline 
+28742705413 & 9973 & 0.003504 \\ 
+\hline 
+45524252104894451218081 & 107 & 0.000053 \\ 
+\hline 
+17650684120269601571820630421347...
+ & 655 & 0.010367 \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+
+\newpage
+
+\section{Información de Hardware y Software}
+
+\subsection{ Notebook - Danilo Abellá}
+\subsubsection{Software}
+\begin{itemize}
+\item SO: Xubuntu 16.04.1 LTS
+\item GMP Library
+\item Mousepad 0.4.0
+\end{itemize}
+
+\subsubsection{Hardware}
+\begin{itemize}
+\item AMD Turion(tm) X2 Dual-Core Mobile RM-72 2.10GHz
+\item Memoria (RAM): 4,00 GB(3,75 GB utilizable)
+\item Adaptador de pantalla: ATI Raedon HD 3200 Graphics
+\end{itemize}
+
+
+
+\subsection{Notebook - Sergio Salinas}
+\subsubsection{Software}
+\begin{itemize}
+\item  SO: ubuntu Gnome 16.04 LTS
+\item Compilador: gcc version 5.4.0 20160609 
+\item Editor de text: Atom
+\end{itemize}
+
+\subsubsection{Hardware}
+\begin{itemize}
+\item Procesador: Intel Core i7-6500U CPU  2.50GHz x 4 
+\item Video: Intel HD Graphics 520 (Skylake GT2) 
+\end{itemize}
+\newpage
+
+
+\section{Conclusiones}
+
+De los resultados se puede concluir que lo que más afecta en el tiempo de algoritmo 
+
+
+\end{document}
