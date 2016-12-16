@@ -65,10 +65,13 @@ t += (double)(clock() - tStart)/CLOCKS_PER_SEC;
 cont++;
 }while( t < 1);
         mpz_tdiv_q(np2,n,np1); // np2 = n/np1
-        mpz_out_str(stdout, 10, n);
-        printf("\t");
+        printf("\nnp1 = ");
+        mpz_out_str(stdout, 10, np1 );
+        printf("\nnp2 = ");
+        mpz_out_str(stdout, 10, np2 );
+        printf("\nB = ");
         mpz_out_str(stdout, 10, B);
-        printf("\t");
+        printf("\nt= ");
         printf("%.6f\n",t/cont );
 
 
