@@ -30,11 +30,11 @@ int main(int argc, char const *argv[]) {
 
         //falta verificar que n es no primo
 
-do{
+do{ // El algoritmo se ejecuta durante 1 segundo.
 
 // Se elige un a al azar 1 < a < n-1, gcd(a,n)=1
         if(mpz_probab_prime_p(n,15) == 2 || mpz_probab_prime_p(n,15) == 1) {
-                printf("No tiene que ser primo el número\n");
+                printf("El numero es primo por lo que no puede ser descompuesto\n");
                 return 0;
         }
 tStart = clock();
@@ -63,7 +63,7 @@ B:
                 goto B;
 t += (double)(clock() - tStart)/CLOCKS_PER_SEC;
 cont++;
-}while( t < 60);
+}while( t < 1);
         mpz_tdiv_q(np2,n,np1); // np2 = n/np1
         printf("\nnp1 = ");
         mpz_out_str(stdout, 10, np1 );
