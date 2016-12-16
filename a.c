@@ -34,7 +34,7 @@ do{
 
 // Se elige un a al azar 1 < a < n-1, gcd(a,n)=1
         if(mpz_probab_prime_p(n,15) == 2 || mpz_probab_prime_p(n,15) == 1) {
-                //printf("No tiene que ser primo el número\n");
+                printf("No tiene que ser primo el número\n");
                 return 0;
         }
 tStart = clock();
@@ -63,7 +63,7 @@ B:
                 goto B;
 t += (double)(clock() - tStart)/CLOCKS_PER_SEC;
 cont++;
-}while( t < 1);
+}while( t < 60);
         mpz_tdiv_q(np2,n,np1); // np2 = n/np1
         printf("\nnp1 = ");
         mpz_out_str(stdout, 10, np1 );
