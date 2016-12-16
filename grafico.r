@@ -1,6 +1,6 @@
     library(ggplot2)   
     options(scipen = 999)
-    tabla=read.table("informe/table.txt", header = TRUE)
+    tabla=read.table("informe/DATOS.txt", header = TRUE)
     num = tabla$V1    
     B=tabla$V2
     Tiempo=tabla$V3
