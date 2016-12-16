@@ -3,14 +3,13 @@
 #include <gmp.h>
 #include <time.h>
 
-int main(int argc, char const *argv[]) {
+int ar(mpz_t n) {
 
         //Para el tiempo
         clock_t tStart;
         float t=0;
         float  cont=0;
 
-        mpz_t n; //entrada
         mpz_t a; //random a
         mpz_t B;
         mpz_t np1; // no primo 1
@@ -19,7 +18,6 @@ int main(int argc, char const *argv[]) {
         gmp_randstate_t state; // semilla random
 
         //se le asigna valor e inicia varaibles
-        mpz_init_set_str(n, argv[1], 10);
         mpz_init(a);
         mpz_init(B);
         mpz_init(np1);
@@ -74,7 +72,6 @@ cont++;
 
         gmp_randclear(state);
         mpz_clear(a);
-        mpz_clear(n);
         mpz_clear(B);
         mpz_clear(np1);
         mpz_clear(np2);
