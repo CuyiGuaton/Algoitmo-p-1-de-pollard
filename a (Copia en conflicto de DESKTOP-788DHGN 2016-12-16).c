@@ -31,13 +31,12 @@ int main(int argc, char const *argv[]) {
         //falta verificar que n es no primo
 
 do{
-
+tStart = clock();
 // Se elige un a al azar 1 < a < n-1, gcd(a,n)=1
-        if(mpz_probab_prime_p(n,15) == 2 || mpz_probab_prime_p(n,15) == 1) {
-                //printf("No tiene que ser primo el número\n");
+        if(mpz_probab_prime_p(n,15) == 2) {
+                printf("No tiene que ser primo el número\n");
                 return 0;
         }
-tStart = clock();
 B:
         do {
                 mpz_urandomm(a,state, n);
@@ -48,7 +47,7 @@ B:
                 mpz_gcd(aux, n, a);
         } while(mpz_cmp_ui(aux,1) != 0); // obliga que a cumpla gcd(a,n) =1 y a!= 1
 
-        mpz_set_ui(B,1); // B = 2
+        mpz_set_ui(B,2); // B = 2
         mpz_powm(a, a, B, n); // a = a^B mod n
         mpz_sub_ui(aux, a, 1); // aux = a-1
         mpz_gcd(np1, aux, n); // np1 = gcd(a-1,n)
@@ -63,13 +62,17 @@ B:
                 goto B;
 t += (double)(clock() - tStart)/CLOCKS_PER_SEC;
 cont++;
-}while( t < 1);
-        mpz_tdiv_q(np2,n,np1); // np2 = n/np1
-        mpz_out_str(stdout, 10, n);
-        printf("\t");
+}while( t < 60);
+        printf("n1= ");
+        mpz_out_str(stdout, 10, np1);
+        printf("\nn2= ");
+        mpz_tdiv_q(np2,n,np1); // np2 = n/np1ssssss
+        mpz_out_str(stdout, 10, np2);
+        printf("\n");
+        printf("B = ");
         mpz_out_str(stdout, 10, B);
-        printf("\t");
-        printf("%.6f\n",t/cont );
+        printf("\n");
+        printf("t = %.6f\n",t/cont );
 
 
         gmp_randclear(state);
